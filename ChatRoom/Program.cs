@@ -9,6 +9,7 @@ namespace ChatRoom
     {
         static void Main(string[] args)
         {
+            #region server
             const string ip = "127.0.0.1";
             const int host = 8080;
 
@@ -37,6 +38,7 @@ namespace ChatRoom
                 listeren.Shutdown(SocketShutdown.Both);
                 listeren.Close();
             }
+            #endregion
         }
     }
 }
