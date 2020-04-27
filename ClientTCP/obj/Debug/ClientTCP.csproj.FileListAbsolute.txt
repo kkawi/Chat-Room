@@ -1,0 +1,6 @@
+C:\Users\kkawi\source\repos\ChatRoom\ClientTCP\bin\Debug\ClientTCP.exe.config
+C:\Users\kkawi\source\repos\ChatRoom\ClientTCP\bin\Debug\ClientTCP.exe
+C:\Users\kkawi\source\repos\ChatRoom\ClientTCP\bin\Debug\ClientTCP.pdb
+C:\Users\kkawi\source\repos\ChatRoom\ClientTCP\obj\Debug\ClientTCP.csproj.CoreCompileInputs.cache
+C:\Users\kkawi\source\repos\ChatRoom\ClientTCP\obj\Debug\ClientTCP.exe
+C:\Users\kkawi\source\repos\ChatRoom\ClientTCP\obj\Debug\ClientTCP.pdb

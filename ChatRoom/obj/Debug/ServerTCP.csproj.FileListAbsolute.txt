@@ -1,0 +1,6 @@
+C:\Users\kkawi\source\repos\ChatRoom\ChatRoom\bin\Debug\ChatRoom.exe.config
+C:\Users\kkawi\source\repos\ChatRoom\ChatRoom\bin\Debug\ChatRoom.exe
+C:\Users\kkawi\source\repos\ChatRoom\ChatRoom\bin\Debug\ChatRoom.pdb
+C:\Users\kkawi\source\repos\ChatRoom\ChatRoom\obj\Debug\ServerTCP.csproj.CoreCompileInputs.cache
+C:\Users\kkawi\source\repos\ChatRoom\ChatRoom\obj\Debug\ChatRoom.exe
+C:\Users\kkawi\source\repos\ChatRoom\ChatRoom\obj\Debug\ChatRoom.pdb
