@@ -16,7 +16,7 @@ namespace ClientTCP
             {
                 if(string.IsNullOrWhiteSpace(nameBot))
                 {
-                    throw new ArgumentNullException("Имя бота не может быть пустым.");
+                    throw new ArgumentNullException("Bot name cannot be empty");
                 }
             }
         }

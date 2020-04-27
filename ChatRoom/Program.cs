@@ -33,7 +33,7 @@ namespace ChatRoom
                 while (listeren.Available > 0);
 
                 Console.WriteLine(data);
-                listeren.Send(Encoding.UTF8.GetBytes("Сообщения отправлено."));
+                listeren.Send(Encoding.UTF8.GetBytes("Messages sent."));
 
                 listeren.Shutdown(SocketShutdown.Both);
                 listeren.Close();
