@@ -10,19 +10,22 @@ namespace ClientTCP
     {
         static void Main(string[] args)
         {
+            #region botcmd
+
+            Console.WriteLine("there is a bot in the chat SC9, its commands @bot / cmd");
+
+            #endregion
+
             #region name
-            string Log = "Log: ";
 
             User user = new User();
-            Bot bot = new Bot();
-            bot.nameBot = "Bot kkawi";
-            
-            Console.WriteLine($"there is a {bot.nameBot} bot in the chat, use @bot / cmd to find out his commands");
+
+            string Log = "Log: ";
 
             Console.WriteLine("Enter your nickname for chat:");
             user.userName = Console.ReadLine();
 
-            if(string.IsNullOrWhiteSpace(user.userName))
+            if (string.IsNullOrWhiteSpace(user.userName))
             {
                 var ErorNullName = "Name cannot be empty!";
 
@@ -31,31 +34,39 @@ namespace ClientTCP
                     er.WriteLine(Log + ErorNullName);
                 }
 
-                for(var i = 0; i == 0;)
+                for (var i = 0; i == 0;)
                 {
                     Console.WriteLine("The name cannot be empty, try entering the name again");
 
                     string NameRepeat = Console.ReadLine();
                     user.userName = NameRepeat;
 
-                    if(NameRepeat != "")
+                    if (NameRepeat != "")
                     {
                         user.userName = NameRepeat;
+
                         break;
                     }
                 }
             }
 
-            Console.WriteLine("Are you chatting!");
+            Console.WriteLine("You entered the chat");
+
+            #endregion
+
+            #region markup
 
             string _Message = " Message: ";
             string _Name = "Name: ";
-            string _Do = ".";
+            string _Dot = ".";
+
             #endregion
 
             #region message/bot
+
             while (true)
             {
+
                 const string ip = "127.0.0.1";
                 const int host = 8080;
 
@@ -79,6 +90,8 @@ namespace ClientTCP
 
                 // bot
 
+                Bot bot = new Bot();
+
                 if (Message.Equals("@bot /cmd", StringComparison.CurrentCultureIgnoreCase))
                 {
                     Console.WriteLine($"[Bot: {bot.nameBot}] - my command: {Environment.NewLine}@bot /name - show your chat nickname.{Environment.NewLine}@bot /loglist - show error log.{Environment.NewLine}@bot /math (example) - math calculation.{Environment.NewLine}@bot /rnd - random number in the specified range.{Environment.NewLine}@bot /clear - clear chat.{Environment.NewLine}@bot /color - change chat text color");
@@ -91,15 +104,17 @@ namespace ClientTCP
                 if (Message.Equals("@bot /rnd", StringComparison.CurrentCultureIgnoreCase))
                 {
                     BotRandom();
+                    Console.WriteLine($"[Bot: {bot.nameBot}] - Random number regeneration completed");
                 }
                 if (Message.Equals("@bot /clear", StringComparison.CurrentCultureIgnoreCase))
                 {
                     Console.Clear();
-                    Console.WriteLine("Chat clear!");
+                    Console.WriteLine($"[Bot: {bot.nameBot}] - Chat clear!");
                 }
                 if (Message.Equals($"@bot /math", StringComparison.CurrentCultureIgnoreCase))
                 {
                     BotMath();
+                    Console.WriteLine($"[Bot: {bot.nameBot}] - Bot completed the robot with computations");
                 }
                 if (Message.Equals($"@bot /color", StringComparison.CurrentCultureIgnoreCase))
                 {
@@ -115,21 +130,23 @@ namespace ClientTCP
                         var read = err.ReadToEnd();
                         Console.WriteLine(read);
                     }
+
+                    Console.WriteLine($"[Bot: {bot.nameBot}] - I got a list of errors all the time");
                 }
 
-                var data = Encoding.UTF8.GetBytes(Message);
-                var nick = Encoding.UTF8.GetBytes(user.userName);
+                var _nick = Encoding.UTF8.GetBytes(user.userName);
+                var _data = Encoding.UTF8.GetBytes(Message);
                 var _message = Encoding.UTF8.GetBytes(_Message);
                 var _name = Encoding.UTF8.GetBytes(_Name);
-                var _do = Encoding.UTF8.GetBytes(_Do);
+                var _dot = Encoding.UTF8.GetBytes(_Dot);
 
                 tcpSocket.Connect(tcpEndPoint);
 
                 tcpSocket.Send(_name);
-                tcpSocket.Send(nick);
-                tcpSocket.Send(_do);
+                tcpSocket.Send(_nick);
+                tcpSocket.Send(_dot);
                 tcpSocket.Send(_message);
-                tcpSocket.Send(data);
+                tcpSocket.Send(_data);
 
                 var buffer = new byte[256];
                 var size = 0;
@@ -148,7 +165,9 @@ namespace ClientTCP
                 tcpSocket.Close();
             }
         }
+
         #endregion
+
         public static void BotMath()
         {
             #region math
