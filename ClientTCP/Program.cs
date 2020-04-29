@@ -175,9 +175,9 @@ namespace ClientTCP
                 tcpSocket.Shutdown(SocketShutdown.Both);
                 tcpSocket.Close();
             }
-        }
 
-        #endregion
+            #endregion
+        }
 
         public static void BotMath()
         {
