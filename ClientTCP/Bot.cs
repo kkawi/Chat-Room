@@ -4,9 +4,13 @@ namespace ClientTCP
 {
     class Bot
     {
-        public string nameBot = "SC9";
-        public string botHelp = "there is a bot in the chat SC9, its commands @bot / cmd";
+        #region botname
 
+        public string nameBot = "SC9";
+
+        #endregion
+
+        #region parameters
 
         public string NameBot
         {
@@ -22,5 +26,7 @@ namespace ClientTCP
                 }
             }
         }
+
+        #endregion
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Net;
-using System.Net.Sockets;
 using System.Text;
+using System.Net.Sockets;
 
 namespace ClientTCP
 {
@@ -23,32 +23,7 @@ namespace ClientTCP
             string Log = "Log: ";
 
             Console.WriteLine("Enter your nickname for chat:");
-            user.userName = Console.ReadLine();
-
-            if (string.IsNullOrWhiteSpace(user.userName))
-            {
-                var ErorNullName = "Name cannot be empty!";
-
-                using (var er = new StreamWriter("logError.txt", true, Encoding.UTF8))
-                {
-                    er.WriteLine(Log + ErorNullName);
-                }
-
-                for (var i = 0; i == 0;)
-                {
-                    Console.WriteLine("The name cannot be empty, try entering the name again");
-
-                    string NameRepeat = Console.ReadLine();
-                    user.userName = NameRepeat;
-
-                    if (NameRepeat != "")
-                    {
-                        user.userName = NameRepeat;
-
-                        break;
-                    }
-                }
-            }
+            user.UserName = Console.ReadLine();
 
             Console.WriteLine("You entered the chat");
 
