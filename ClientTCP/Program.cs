@@ -94,7 +94,8 @@ namespace ClientTCP
 
                 if (Message.Equals("@bot /cmd", StringComparison.CurrentCultureIgnoreCase))
                 {
-                    Console.WriteLine($"[Bot: {bot.nameBot}] - my command: {Environment.NewLine}@bot /name - show your chat nickname.{Environment.NewLine}@bot /loglist - show error log.{Environment.NewLine}@bot /math (example) - math calculation.{Environment.NewLine}@bot /rnd - random number in the specified range.{Environment.NewLine}@bot /clear - clear chat.{Environment.NewLine}@bot /color - change chat text color");
+                    Console.WriteLine($"[Bot: {bot.nameBot}] - my command: {Environment.NewLine}@bot /name - show your chat nickname.{Environment.NewLine}@bot /loglist - show error log.{Environment.NewLine}@bot /math (example) - math calculation.");
+                    Console.WriteLine($"@bot /clear - clear chat.{Environment.NewLine}@bot /tcolor - change chat text color.{Environment.NewLine}@bot /bcolor - change chat background color.{Environment.NewLine}@bot /rnd - random number in the specified range.{Environment.NewLine}@bot /reset - reset color text/background");
                 }
 
                 if (Message.Equals("@bot /name", StringComparison.CurrentCultureIgnoreCase))
@@ -116,10 +117,20 @@ namespace ClientTCP
                     BotMath();
                     Console.WriteLine($"[Bot: {bot.nameBot}] - Bot completed the robot with computations");
                 }
-                if (Message.Equals($"@bot /color", StringComparison.CurrentCultureIgnoreCase))
+                if (Message.Equals($"@bot /tcolor", StringComparison.CurrentCultureIgnoreCase))
                 {
-                    BotColor();
-                    Console.WriteLine($"[Bot: {bot.nameBot}] - Chat color changed");
+                    BotTextColor();
+                    Console.WriteLine($"[Bot: {bot.nameBot}] - Chat text color changed");
+                }
+                if (Message.Equals($"@bot /reset", StringComparison.CurrentCultureIgnoreCase))
+                {
+                    Console.ResetColor();
+                    Console.WriteLine($"[Bot: {bot.nameBot}] - Background / chat color has been changed to normal");
+                }
+                if (Message.Equals($"@bot /bcolor", StringComparison.CurrentCultureIgnoreCase))
+                {
+                    BotBackgroundColor();
+                    Console.WriteLine($"[Bot: {bot.nameBot}] - Chat background color changed");
                 }
                 if (Message.Equals("@bot /loglist", StringComparison.CurrentCultureIgnoreCase))
                 {
@@ -266,21 +277,30 @@ namespace ClientTCP
             }
             #endregion
         }
-        public static void BotColor()
+        public static void BotTextColor()
         {
-            #region color
-            Console.WriteLine("--------------------------------------------");
-            Console.WriteLine("             Available colors:");
-            Console.WriteLine("--------------------------------------------");
+            #region textcolor
+            Console.WriteLine("----------------------------------------------------------------");
+            Console.WriteLine("         Available colors for changing chat text color");
+            Console.WriteLine("----------------------------------------------------------------");
 
-            Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("Red"); 
-            Console.ForegroundColor = ConsoleColor.Cyan; Console.WriteLine("Cyan"); 
+            if (Console.ForegroundColor != ConsoleColor.White)
+            {
+                Console.WriteLine("The background / chat color will turn white at the time of selection");
+            }
+
+            Console.ForegroundColor = ConsoleColor.White;
+
+            Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("Red");
+            Console.ForegroundColor = ConsoleColor.Cyan; Console.WriteLine("Cyan");
             Console.ForegroundColor = ConsoleColor.Yellow; Console.WriteLine("Yellow");
-            Console.ForegroundColor = ConsoleColor.Magenta; Console.WriteLine("Magenta"); 
+            Console.ForegroundColor = ConsoleColor.Magenta; Console.WriteLine("Magenta");
             Console.ForegroundColor = ConsoleColor.Green; Console.WriteLine("Green"); 
             Console.ForegroundColor = ConsoleColor.Blue; Console.WriteLine("Blue");
 
-            Console.ForegroundColor = ConsoleColor.White; Console.WriteLine("Enter the names of one of the colors you want to choose");
+            Console.ForegroundColor = ConsoleColor.White;
+
+            Console.WriteLine("Enter the names of one of the colors you want to choose");
             string Select = Console.ReadLine();
 
             if (string.IsNullOrWhiteSpace(Select))
@@ -324,6 +344,77 @@ namespace ClientTCP
             {
                 Console.ForegroundColor = ConsoleColor.Blue;
             }
+            #endregion
+        }
+        public static void BotBackgroundColor()
+        {
+            #region backgroundcolor
+
+            Console.WriteLine("----------------------------------------------------------------");
+            Console.WriteLine("         Available colors for changing chat background:");
+            Console.WriteLine("----------------------------------------------------------------");
+
+            if(Console.BackgroundColor != ConsoleColor.White)
+            {
+                Console.WriteLine("The background / chat color will turn white at the time of selection");
+            }
+
+            Console.BackgroundColor = ConsoleColor.Black;
+
+            Console.BackgroundColor = ConsoleColor.Red; Console.WriteLine("Red");
+            Console.BackgroundColor = ConsoleColor.Cyan; Console.WriteLine("Cyan");
+            Console.BackgroundColor = ConsoleColor.Yellow; Console.WriteLine("Yellow");
+            Console.BackgroundColor = ConsoleColor.Magenta; Console.WriteLine("Magenta");
+            Console.BackgroundColor = ConsoleColor.Green; Console.WriteLine("Green");
+            Console.BackgroundColor = ConsoleColor.Blue; Console.WriteLine("Blue");
+
+            Console.BackgroundColor = ConsoleColor.Black;
+
+            Console.WriteLine("Enter the names of one of the colors you want to choose");
+            string Select = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(Select))
+            {
+                for (var i = 0; i == 0;)
+                {
+                    Console.WriteLine("Color cannot be empty, try entering again.");
+
+                    string ColorRepeat = Console.ReadLine();
+                    Select = ColorRepeat;
+
+                    if (ColorRepeat != "")
+                    {
+                        Select = ColorRepeat;
+                        break;
+                    }
+                }
+            }
+
+            if (Select.Equals("Red", StringComparison.CurrentCultureIgnoreCase))
+            {
+                Console.BackgroundColor = ConsoleColor.Red;
+            }
+            if (Select.Equals("Cyan", StringComparison.CurrentCultureIgnoreCase))
+            {
+                Console.BackgroundColor = ConsoleColor.Cyan;
+            }
+            if (Select.Equals("Yellow", StringComparison.CurrentCultureIgnoreCase))
+            {
+                Console.BackgroundColor = ConsoleColor.Yellow;
+            }
+            if (Select.Equals("Magenta", StringComparison.CurrentCultureIgnoreCase))
+            {
+                Console.BackgroundColor = ConsoleColor.Magenta;
+            }
+            if (Select.Equals("Green", StringComparison.CurrentCultureIgnoreCase))
+            {
+                Console.BackgroundColor = ConsoleColor.Green;
+            }
+            if (Select.Equals("Blue", StringComparison.CurrentCultureIgnoreCase))
+            {
+                Console.BackgroundColor = ConsoleColor.Blue;
+            }
+
             #endregion
         }
     }
