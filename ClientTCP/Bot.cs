@@ -10,25 +10,6 @@ namespace ClientTCP
 
         #endregion
 
-        #region parameters
-
-        public string NameBot
-        {
-            get
-            {
-                return nameBot;
-            }
-            set
-            {
-                if (string.IsNullOrWhiteSpace(nameBot))
-                {
-                    throw new ArgumentNullException("Bot name cannot be empty");
-                }
-            }
-        }
-
-        #endregion
-
         public void BotMath()
         {
             #region math

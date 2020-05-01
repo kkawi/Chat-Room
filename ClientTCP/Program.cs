@@ -20,16 +20,37 @@ namespace ClientTCP
 
             User user = new User();
 
-            string Log = "Log: ";
+            Console.WriteLine("Enter your name:");
+            user.userName = Console.ReadLine();
 
-            Console.WriteLine("Enter your nickname for chat:");
-            user.UserName = Console.ReadLine();
+            #region set
+
+            if (string.IsNullOrWhiteSpace(user.userName))
+            {
+                for (var i = 0; i == 0;)
+                {
+                    Console.WriteLine("The name cannot be empty, try entering the name again");
+
+                    user.userName = Console.ReadLine();
+
+                    if (user.userName != "")
+                    {
+                        i = 1;
+
+                        break;
+                    }
+                }
+            }
+
+            #endregion
 
             Console.WriteLine("You entered the chat");
 
             #endregion
 
             #region markup
+
+            string Log = $"[{DateTime.Now.ToString()}] - Log: ";
 
             string _Message = " Message: ";
             string _Name = "Name: ";
