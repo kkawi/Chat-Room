@@ -32,13 +32,14 @@ namespace ClientTCP
             Console.WriteLine("Enter your name:");
             user.userName = Console.ReadLine();
 
+
             #region set
 
             if (string.IsNullOrWhiteSpace(user.userName))
             {
                 for (var i = 0; i == 0;)
                 {
-                    Console.WriteLine($"The name cannot be empty, try entering the name again{Environment.NewLine}");
+                    Console.WriteLine($"The name cannot be empty, try entering the name again:{Environment.NewLine}");
 
                     user.userName = Console.ReadLine();
 
@@ -49,6 +50,30 @@ namespace ClientTCP
                         break;
                     }
                 }
+            }
+
+            string fileText = File.ReadAllText("userActive.txt");
+
+            if (fileText.Contains(user.userName))
+            {
+                for (var i = 0; i == 0;)
+                {
+                    Console.WriteLine($"the name is already in use, try entering again:{Environment.NewLine}");
+
+                    user.userName = Console.ReadLine();
+
+                    if (fileText.Contains(user.userName) == false)
+                    {
+                        i = 1;
+
+                        break;
+                    }
+                }
+            }
+
+            using (var sw = new StreamWriter("userActive.txt", false, Encoding.UTF8))
+            {
+                sw.WriteLine(user.userName);
             }
 
             #endregion
@@ -75,9 +100,9 @@ namespace ClientTCP
                 {
 
                     const string ip = "127.0.0.1";
-                    const int host = 8080;
+                    const int port = 8080;
 
-                    var tcpEndPoint = new IPEndPoint(IPAddress.Parse(ip), host);
+                    var tcpEndPoint = new IPEndPoint(IPAddress.Parse(ip), port);
                     var tcpSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
                     Console.WriteLine("Enter messages:");
@@ -107,6 +132,7 @@ namespace ClientTCP
                         Console.WriteLine($"@bot /math (example) - math calculation.{Environment.NewLine}@bot /reset - reset color text/background.");
                         Console.WriteLine($"@bot /clear - clear chat.{Environment.NewLine}@bot /tcolor - change chat text color.");
                         Console.WriteLine($"@bot /bcolor - change chat background color.{Environment.NewLine}@bot /rnd - random number in the specified range.");
+                        Console.WriteLine($"@bot /setname - name changes.");
                     }
 
                     if (Message.Equals("@bot /name", StringComparison.CurrentCultureIgnoreCase))
@@ -120,8 +146,7 @@ namespace ClientTCP
                     }
                     if (Message.Equals("@bot /clear", StringComparison.CurrentCultureIgnoreCase))
                     {
-                        Console.Clear();
-                        Console.WriteLine($"[Bot: {bot.nameBot}] - Chat clear!");
+                        bot.BotChatClear();
                     }
                     if (Message.Equals($"@bot /math", StringComparison.CurrentCultureIgnoreCase))
                     {
@@ -168,6 +193,23 @@ namespace ClientTCP
 
                         void SetName()
                         {
+                            if (fileText.Contains(user.userNameSet))
+                            {
+                                for (var i = 0; i == 0;)
+                                {
+                                    Console.WriteLine($"the name is already in use, try entering again:{Environment.NewLine}");
+
+                                    user.userNameSet = Console.ReadLine();
+
+                                    if (fileText.Contains(user.userNameSet) == false)
+                                    {
+                                        i = 1;
+
+                                        break;
+                                    }
+                                }
+                            }
+
                             var _setname = Encoding.UTF8.GetBytes($"{user.userName} изменил имя на: {user.userNameSet}{Environment.NewLine}");
 
                             tcpSocket.Send(_setname);

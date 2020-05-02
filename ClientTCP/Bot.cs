@@ -248,5 +248,24 @@ namespace ClientTCP
 
             #endregion
         }
+        public void BotChatClear()
+        {
+            #region chatclear
+
+            Console.Clear();
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+
+            Console.WriteLine("--------------------------------------------------");
+            Console.WriteLine("                     MESSAGE");
+            Console.WriteLine("--------------------------------------------------");
+            Console.WriteLine(" ");
+
+            Console.ResetColor();
+
+            Console.WriteLine($"[Bot: {nameBot}] - Chat clear!");
+
+            #endregion
+        }
     }
 }

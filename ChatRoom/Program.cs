@@ -25,9 +25,9 @@ namespace ChatRoom
             #region server
 
             const string ip = "127.0.0.1";
-            const int host = 8080;
+            const int port = 8080;
 
-            var tcpEndPoint = new IPEndPoint(IPAddress.Parse(ip), host);
+            var tcpEndPoint = new IPEndPoint(IPAddress.Parse(ip), port);
             var tcpSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             tcpSocket.Bind(tcpEndPoint);
             tcpSocket.Listen(int.MaxValue);
