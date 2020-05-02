@@ -9,7 +9,7 @@ namespace ChatRoom
     {
         static void Main(string[] args)
         {
-            #region server
+            #region info
 
             Console.ForegroundColor = ConsoleColor.Cyan;
 
@@ -18,6 +18,11 @@ namespace ChatRoom
             Console.WriteLine("--------------------------------------------------");
 
             Console.ResetColor();
+            Console.WriteLine(" ");
+
+            #endregion
+
+            #region server
 
             const string ip = "127.0.0.1";
             const int host = 8080;
@@ -42,7 +47,8 @@ namespace ChatRoom
                 while (listeren.Available > 0);
 
                 Console.WriteLine(data);
-                listeren.Send(Encoding.UTF8.GetBytes("Messages sent."));
+
+                listeren.Send(Encoding.UTF8.GetBytes($"Messages sent.{Environment.NewLine}"));
 
                 listeren.Shutdown(SocketShutdown.Both);
                 listeren.Close();

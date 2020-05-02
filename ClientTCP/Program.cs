@@ -10,7 +10,16 @@ namespace ClientTCP
     {
         static void Main(string[] args)
         {
-            #region botcmd
+            #region info
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+
+            Console.WriteLine("--------------------------------------------------");
+            Console.WriteLine("                     MESSAGE");
+            Console.WriteLine("--------------------------------------------------");
+
+            Console.ResetColor();
+            Console.WriteLine(" ");
 
             Console.WriteLine("there is a bot in the chat SC9, its commands @bot / cmd");
 
@@ -29,7 +38,7 @@ namespace ClientTCP
             {
                 for (var i = 0; i == 0;)
                 {
-                    Console.WriteLine("The name cannot be empty, try entering the name again");
+                    Console.WriteLine($"The name cannot be empty, try entering the name again{Environment.NewLine}");
 
                     user.userName = Console.ReadLine();
 
