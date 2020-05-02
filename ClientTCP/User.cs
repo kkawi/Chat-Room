@@ -8,6 +8,8 @@ namespace ClientTCP
 
         public string userName { get; set; }
 
+        public string userNameSet { get; set; }
+
         #endregion
     }
 }

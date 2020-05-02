@@ -10,6 +10,15 @@ namespace ChatRoom
         static void Main(string[] args)
         {
             #region server
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+
+            Console.WriteLine("--------------------------------------------------");
+            Console.WriteLine("                    CHAT ROOM");
+            Console.WriteLine("--------------------------------------------------");
+
+            Console.ResetColor();
+
             const string ip = "127.0.0.1";
             const int host = 8080;
 

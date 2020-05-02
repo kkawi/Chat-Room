@@ -147,13 +147,31 @@ namespace ClientTCP
                         Console.WriteLine($"[Bot: {bot.nameBot}] - I got a list of errors all the time");
                     }
 
+                    tcpSocket.Connect(tcpEndPoint);
+
+                    if (Message.Equals("@bot /setname", StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        Console.WriteLine("Enter your new name:");
+
+                        user.userNameSet = Console.ReadLine();
+
+                        SetName();
+
+                        void SetName()
+                        {
+                            var _setname = Encoding.UTF8.GetBytes($"{user.userName} изменил имя на: {user.userNameSet}{Environment.NewLine}");
+
+                            tcpSocket.Send(_setname);
+
+                            user.userName = user.userNameSet;
+                        }
+                    }
+
                     var _nick = Encoding.UTF8.GetBytes(user.userName);
                     var _data = Encoding.UTF8.GetBytes(Message);
                     var _message = Encoding.UTF8.GetBytes(_Message);
                     var _name = Encoding.UTF8.GetBytes(_Name);
                     var _dot = Encoding.UTF8.GetBytes(_Dot);
-
-                    tcpSocket.Connect(tcpEndPoint);
 
                     tcpSocket.Send(_name);
                     tcpSocket.Send(_nick);
