@@ -1,1 +1,1 @@
-﻿
+﻿[03.05.2020 14:10:11] - Log: Socket exception, server on device is not open.

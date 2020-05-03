@@ -25,7 +25,7 @@ namespace ClientTCP
 
             #endregion
 
-            #region name
+            #region name/set
 
             User user = new User();
 
@@ -33,7 +33,9 @@ namespace ClientTCP
             user.userName = Console.ReadLine();
 
 
-            #region set
+            // set
+
+            string fileText = File.ReadAllText("userActive.txt");
 
             if (string.IsNullOrWhiteSpace(user.userName))
             {
@@ -43,7 +45,7 @@ namespace ClientTCP
 
                     user.userName = Console.ReadLine();
 
-                    if (user.userName != "")
+                    if (user.userName != "" && fileText.Contains(user.userName) == false)
                     {
                         i = 1;
 
@@ -51,8 +53,6 @@ namespace ClientTCP
                     }
                 }
             }
-
-            string fileText = File.ReadAllText("userActive.txt");
 
             if (fileText.Contains(user.userName))
             {
@@ -66,6 +66,11 @@ namespace ClientTCP
                     {
                         i = 1;
 
+                        using (var sw = new StreamWriter("userActive.txt", false, Encoding.UTF8))
+                        {
+                            sw.WriteLine(user.userName);
+                        }
+
                         break;
                     }
                 }
@@ -75,8 +80,6 @@ namespace ClientTCP
             {
                 sw.WriteLine(user.userName);
             }
-
-            #endregion
 
             Console.WriteLine("You entered the chat");
 
