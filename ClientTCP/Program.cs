@@ -194,6 +194,8 @@ namespace ClientTCP
 
                         SetName();
 
+                        Console.WriteLine($"[Bot: {bot.nameBot}] - Name changed.");
+
                         void SetName()
                         {
                             if (fileText.Contains(user.userNameSet))
