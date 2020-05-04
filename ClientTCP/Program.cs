@@ -87,6 +87,8 @@ namespace ClientTCP
 
             #region markup
 
+            var TimeMessage = $"[{DateTime.Now.ToString()}] - ";
+            
             string Log = $"[{DateTime.Now.ToString()}] - Log: ";
 
             string _Message = " Message: ";
@@ -227,8 +229,10 @@ namespace ClientTCP
                     var _data = Encoding.UTF8.GetBytes(Message);
                     var _message = Encoding.UTF8.GetBytes(_Message);
                     var _name = Encoding.UTF8.GetBytes(_Name);
+                    var _time = Encoding.UTF8.GetBytes(TimeMessage);
                     var _dot = Encoding.UTF8.GetBytes(_Dot);
 
+                    tcpSocket.Send(_time);
                     tcpSocket.Send(_name);
                     tcpSocket.Send(_nick);
                     tcpSocket.Send(_dot);

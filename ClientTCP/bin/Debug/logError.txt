@@ -1,1 +1,2 @@
 ﻿[03.05.2020 14:10:11] - Log: Socket exception, server on device is not open.
+[04.05.2020 16:19:50] - Log: Socket exception, server on device is not open.
