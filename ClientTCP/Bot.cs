@@ -57,6 +57,9 @@ namespace ClientTCP
                         }
                         break;
                 }
+
+                Console.WriteLine($"[Bot: {nameBot}] - Bot completed the robot with computations");
+
             }
             catch (FormatException ex)
             {
@@ -103,6 +106,8 @@ namespace ClientTCP
                     var result = rnd.Next(x, y);
                     Console.WriteLine($"Random number ranging from {x} and to {y}: {result}.");
                 }
+
+                Console.WriteLine($"[Bot: {nameBot}] - Random number regeneration completed");
             }
             catch (FormatException ex)
             {
@@ -177,6 +182,8 @@ namespace ClientTCP
             {
                 Console.ForegroundColor = ConsoleColor.Blue;
             }
+
+            Console.WriteLine($"[Bot: {nameBot}] - Chat text color changed");
             #endregion
         }
         public void BotBackgroundColor()
@@ -248,6 +255,7 @@ namespace ClientTCP
                 Console.BackgroundColor = ConsoleColor.Blue;
             }
 
+            Console.WriteLine($"[Bot: {nameBot}] - Chat background color changed");
             #endregion
         }
         public void BotChatClear()
@@ -266,6 +274,22 @@ namespace ClientTCP
             Console.ResetColor();
 
             Console.WriteLine($"[Bot: {nameBot}] - Chat clear!");
+
+            #endregion
+        }
+        public void BotErrorCheck()
+        {
+            #region errorcheck
+
+            using (var err = new StreamReader("logError.txt", Encoding.UTF8))
+            {
+                Console.WriteLine("If nothing happened, the error log is empty");
+
+                var read = err.ReadToEnd();
+                Console.WriteLine(read);
+            }
+
+            Console.WriteLine($"[Bot: {nameBot}] - I got a list of errors all the time");
 
             #endregion
         }

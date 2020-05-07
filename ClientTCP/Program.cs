@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Net.Sockets;
+using System.Threading.Tasks;
 
 namespace ClientTCP
 {
@@ -125,6 +126,23 @@ namespace ClientTCP
                         throw new ArgumentNullException("Messages cannot be empty");
                     }
 
+                    SaveChatAsync();
+
+                    // chatlog
+
+                    async Task SaveChatAsync()
+                    {
+                        await Task.Run(() => SaveChat());
+                    }
+
+                    void SaveChat()
+                    {
+                        using (var sm = new StreamWriter("chatlog.txt", true, Encoding.UTF8))
+                        {
+                            sm.WriteLine($"[{DateTime.Now.ToString()}] - Name: {user.userName}. Message: {Message}");
+                        }
+                    }
+
                     // bot.
 
                     Bot bot = new Bot();
@@ -147,7 +165,6 @@ namespace ClientTCP
                     if (Message.Equals("@bot /rnd", StringComparison.CurrentCultureIgnoreCase))
                     {
                         bot.BotRandom();
-                        Console.WriteLine($"[Bot: {bot.nameBot}] - Random number regeneration completed");
                     }
                     if (Message.Equals("@bot /clear", StringComparison.CurrentCultureIgnoreCase))
                     {
@@ -156,12 +173,10 @@ namespace ClientTCP
                     if (Message.Equals($"@bot /math", StringComparison.CurrentCultureIgnoreCase))
                     {
                         bot.BotMath();
-                        Console.WriteLine($"[Bot: {bot.nameBot}] - Bot completed the robot with computations");
                     }
                     if (Message.Equals($"@bot /tcolor", StringComparison.CurrentCultureIgnoreCase))
                     {
                         bot.BotTextColor();
-                        Console.WriteLine($"[Bot: {bot.nameBot}] - Chat text color changed");
                     }
                     if (Message.Equals($"@bot /reset", StringComparison.CurrentCultureIgnoreCase))
                     {
@@ -171,19 +186,10 @@ namespace ClientTCP
                     if (Message.Equals($"@bot /bcolor", StringComparison.CurrentCultureIgnoreCase))
                     {
                         bot.BotBackgroundColor();
-                        Console.WriteLine($"[Bot: {bot.nameBot}] - Chat background color changed");
                     }
                     if (Message.Equals("@bot /loglist", StringComparison.CurrentCultureIgnoreCase))
                     {
-                        using (var err = new StreamReader("logError.txt", Encoding.UTF8))
-                        {
-                            Console.WriteLine("If nothing happened, the error log is empty");
-
-                            var read = err.ReadToEnd();
-                            Console.WriteLine(read);
-                        }
-
-                        Console.WriteLine($"[Bot: {bot.nameBot}] - I got a list of errors all the time");
+                        bot.BotErrorCheck();
                     }
 
                     tcpSocket.Connect(tcpEndPoint);
