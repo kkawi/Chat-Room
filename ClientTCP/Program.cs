@@ -48,7 +48,7 @@ namespace ClientTCP
 
                     user.userName = Console.ReadLine();
 
-                    if (user.userName.Length < 16)
+                    if (user.userName.Length < 16 && user.userName != string.Empty && fileText.Contains(user.userName) == false)
                     {
                         i = 1;
 
@@ -65,7 +65,7 @@ namespace ClientTCP
 
                     user.userName = Console.ReadLine();
 
-                    if (user.userName != string.Empty && fileText.Contains(user.userName) == false)
+                    if (user.userName.Length < 16 && user.userName != string.Empty && fileText.Contains(user.userName) == false)
                     {
                         i = 1;
 
@@ -82,7 +82,7 @@ namespace ClientTCP
 
                     user.userName = Console.ReadLine();
 
-                    if (fileText.Contains(user.userName) == false)
+                    if (user.userName.Length < 16 && user.userName != string.Empty && fileText.Contains(user.userName) == false)
                     {
                         i = 1;
 
