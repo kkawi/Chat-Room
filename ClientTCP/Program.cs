@@ -30,6 +30,8 @@ namespace ClientTCP
 
             User user = new User();
 
+            Console.WriteLine();
+            Console.WriteLine($"the name must be no more than 16 characters, and also cannot be empty.{Environment.NewLine}");
             Console.WriteLine("Enter your name:");
             user.userName = Console.ReadLine();
 
@@ -37,6 +39,23 @@ namespace ClientTCP
             // set
 
             string fileText = File.ReadAllText("userActive.txt");
+
+            if(user.userName.Length > 16)
+            {
+                for(var i = 0; i == 0;)
+                {
+                    Console.WriteLine($"name cannot be more than 16 characters, try entering again:{Environment.NewLine}");
+
+                    user.userName = Console.ReadLine();
+
+                    if (user.userName.Length < 16)
+                    {
+                        i = 1;
+
+                        break;
+                    }
+                }
+            }
 
             if (string.IsNullOrWhiteSpace(user.userName))
             {
@@ -46,7 +65,7 @@ namespace ClientTCP
 
                     user.userName = Console.ReadLine();
 
-                    if (user.userName != "" && fileText.Contains(user.userName) == false)
+                    if (user.userName != string.Empty && fileText.Contains(user.userName) == false)
                     {
                         i = 1;
 
@@ -123,7 +142,17 @@ namespace ClientTCP
                             er.WriteLine(Log + messageError);
                         }
 
-                        throw new ArgumentNullException("Messages cannot be empty");
+                        for(var i = 0; i == 0;)
+                        {
+                            Console.WriteLine("Entered blank message, retry");
+
+                            Message = Console.ReadLine();
+
+                            if (Message != string.Empty)
+                            {
+                                i = 1;
+                            }
+                        }
                     }
 
                     SaveChatAsync();
@@ -149,13 +178,7 @@ namespace ClientTCP
 
                     if (Message.Equals("@bot /cmd", StringComparison.CurrentCultureIgnoreCase))
                     {
-                        // command list bot.
-
-                        Console.WriteLine($"[Bot: {bot.nameBot}] - my command: {Environment.NewLine}@bot /name - show your chat nickname.{Environment.NewLine}@bot /loglist - show error log.");
-                        Console.WriteLine($"@bot /math (example) - math calculation.{Environment.NewLine}@bot /reset - reset color text/background.");
-                        Console.WriteLine($"@bot /clear - clear chat.{Environment.NewLine}@bot /tcolor - change chat text color.");
-                        Console.WriteLine($"@bot /bcolor - change chat background color.{Environment.NewLine}@bot /rnd - random number in the specified range.");
-                        Console.WriteLine($"@bot /setname - name changes.");
+                        bot.BotCommand();
                     }
 
                     if (Message.Equals("@bot /name", StringComparison.CurrentCultureIgnoreCase))

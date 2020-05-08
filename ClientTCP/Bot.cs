@@ -12,6 +12,19 @@ namespace ClientTCP
 
         #endregion
 
+        public void BotCommand()
+        {
+            #region command
+
+            Console.WriteLine($"[Bot: {nameBot}] - my command: {Environment.NewLine}@bot /name - show your chat nickname.{Environment.NewLine}@bot /loglist - show error log.");
+            Console.WriteLine($"@bot /math (example) - math calculation.{Environment.NewLine}@bot /reset - reset color text/background.");
+            Console.WriteLine($"@bot /clear - clear chat.{Environment.NewLine}@bot /tcolor - change chat text color.");
+            Console.WriteLine($"@bot /bcolor - change chat background color.{Environment.NewLine}@bot /rnd - random number in the specified range.");
+            Console.WriteLine($"@bot /setname - name changes.");
+
+            #endregion
+        }
+
         public void BotMath()
         {
             #region math
